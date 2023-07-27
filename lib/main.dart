@@ -45,36 +45,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: WebViewX(
           key: const ValueKey('webviewx'),
           initialContent: '''
-               <script src="https://www.paypal.com/sdk/js?client-id=AVKt4Ll68c5_R7cDuevqZrk1o0WjX7kGywsVLIwHdrVRtNS9qa0n5XtQDpD66DTvBB7I76qN0ZUulztt&currency=JPY"> // Replace YOUR_CLIENT_ID with your actual client ID
-    </script>
-
-  <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '5' // Charge 5 JPY
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-
-                    var payerEmail = details.payer.email_address;
-
-                    fetch('https://testapi.com/test?email=' + payerEmail)
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch((error) => {
-                      console.error('Error:', error);
-                    });
-                });
-            }
-        }).render('#paypal-button-container');
-    </script><div id="paypal-button-container"></div>''',
+            <div id="paypal-button-container-P-5X8102194C969025LMS7XYEQ"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AfkCAsd5GPoXkDHNQ4ESHiizn9bqVz79jYo7pmP0plzsHimiMT90-hTrAu3iqsIfW73PUcRIk-pVN8sC&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          /* Creates the subscription */
+          plan_id: 'P-5X8102194C969025LMS7XYEQ'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID); // You can add optional success message for the subscriber here
+      }
+  }).render('#paypal-button-container-P-5X8102194C969025LMS7XYEQ'); // Renders the PayPal button
+</script>''',
           initialSourceType: SourceType.html,
           height: 500, //サイズは適当
           width: 500, //サイズは適当
