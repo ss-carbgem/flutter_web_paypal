@@ -45,27 +45,29 @@ class _MyHomePageState extends State<MyHomePage> {
         child: WebViewX(
           key: const ValueKey('webviewx'),
           initialContent: '''
-            <div id="paypal-button-container-P-5X8102194C969025LMS7XYEQ"></div>
-<script src="https://www.paypal.com/sdk/js?client-id=AfkCAsd5GPoXkDHNQ4ESHiizn9bqVz79jYo7pmP0plzsHimiMT90-hTrAu3iqsIfW73PUcRIk-pVN8sC&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+       <div id="paypal-button-container-P-2A2845224C032861AMTBCBMI"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AaFnMjPaY2SxC2IYEcdtD1vTLZ6Gtcv1ybl4Jd36gm7L_-gQPgZX6_L-P7_GB6A0LtQvk6MZgxe5Bq9c&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 <script>
   paypal.Buttons({
       style: {
-          shape: 'rect',
+          shape: 'pill',
           color: 'gold',
-          layout: 'vertical',
+          layout: 'horizontal',
           label: 'subscribe'
       },
       createSubscription: function(data, actions) {
         return actions.subscription.create({
           /* Creates the subscription */
-          plan_id: 'P-5X8102194C969025LMS7XYEQ'
+          plan_id: 'P-2A2845224C032861AMTBCBMI'
         });
       },
       onApprove: function(data, actions) {
         alert(data.subscriptionID); // You can add optional success message for the subscriber here
       }
-  }).render('#paypal-button-container-P-5X8102194C969025LMS7XYEQ'); // Renders the PayPal button
-</script>''',
+  }).render('#paypal-button-container-P-2A2845224C032861AMTBCBMI'); // Renders the PayPal button
+</script>
+
+''',
           initialSourceType: SourceType.html,
           height: 500, //サイズは適当
           width: 500, //サイズは適当
