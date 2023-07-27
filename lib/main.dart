@@ -45,36 +45,29 @@ class _MyHomePageState extends State<MyHomePage> {
         child: WebViewX(
           key: const ValueKey('webviewx'),
           initialContent: '''
-               <script src="https://www.paypal.com/sdk/js?client-id=AVKt4Ll68c5_R7cDuevqZrk1o0WjX7kGywsVLIwHdrVRtNS9qa0n5XtQDpD66DTvBB7I76qN0ZUulztt&currency=JPY"> // Replace YOUR_CLIENT_ID with your actual client ID
-    </script>
+       <div id="paypal-button-container-P-2A2845224C032861AMTBCBMI"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AaFnMjPaY2SxC2IYEcdtD1vTLZ6Gtcv1ybl4Jd36gm7L_-gQPgZX6_L-P7_GB6A0LtQvk6MZgxe5Bq9c&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'pill',
+          color: 'gold',
+          layout: 'horizontal',
+          label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          /* Creates the subscription */
+          plan_id: 'P-2A2845224C032861AMTBCBMI'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID); // You can add optional success message for the subscriber here
+      }
+  }).render('#paypal-button-container-P-2A2845224C032861AMTBCBMI'); // Renders the PayPal button
+</script>
 
-  <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '5' // Charge 5 JPY
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-
-                    var payerEmail = details.payer.email_address;
-
-                    fetch('https://testapi.com/test?email=' + payerEmail)
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch((error) => {
-                      console.error('Error:', error);
-                    });
-                });
-            }
-        }).render('#paypal-button-container');
-    </script><div id="paypal-button-container"></div>''',
+''',
           initialSourceType: SourceType.html,
           height: 500, //サイズは適当
           width: 500, //サイズは適当
