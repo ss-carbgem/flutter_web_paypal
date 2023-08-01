@@ -52,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
       style: {
           shape: 'pill',
           color: 'gold',
-          layout: 'horizontal',
           label: 'subscribe'
       },
       createSubscription: function(data, actions) {
